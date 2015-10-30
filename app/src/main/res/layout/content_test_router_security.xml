@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:padding="10dp">
+
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/listView"
+            android:nestedScrollingEnabled="false"
+            android:stackFromBottom="false" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="355dp">
+
+        <Button
+            android:id="@+id/test_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test user/pass"
+            android:onClick="testUserPass"
+            android:layout_below="@+id/pass"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/user"
+            android:hint="username "
+            android:textAlignment="center"
+            android:singleLine="true"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/pass"
+            android:layout_toStartOf="@+id/pass" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/pass"
+            android:textAlignment="center"
+            android:hint="password"
+            android:singleLine="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/log"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:singleLine="false" />
+
+        <Button
+            android:id="@+id/log_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Info"
+            android:onClick="showLogInfo"
+            android:layout_alignTop="@+id/test_pw"
+            android:layout_toRightOf="@+id/test_pw"
+            android:layout_toEndOf="@+id/test_pw" />
+    </RelativeLayout>
+
+</LinearLayout>
