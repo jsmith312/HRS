@@ -95,7 +95,7 @@ public class TestRouterSecurity extends Activity {
         if (!rep.getHasDefaultPassword()) {
             stringList.add("Default Password not set");
             imgList.add(R.drawable.safe_50);
-            adapter.notifyAll();
+            // adapter.notifyAll();
             setLog(false);
         } else {
             stringList.add("Default Password set");
