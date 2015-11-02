@@ -73,6 +73,16 @@
             android:layout_alignTop="@+id/test_pw"
             android:layout_toRightOf="@+id/test_pw"
             android:layout_toEndOf="@+id/test_pw" />
+
+        <Button
+            android:id="@+id/send_log_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send log info"
+            android:onClick="sendLogInfo"
+            android:layout_below="@+id/pass"
+            android:layout_toRightOf="@+id/log_info"
+            android:layout_toEndOf="@+id/log_info" />
     </RelativeLayout>
 
 </LinearLayout>

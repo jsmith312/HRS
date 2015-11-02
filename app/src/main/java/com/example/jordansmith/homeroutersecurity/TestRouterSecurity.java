@@ -123,7 +123,7 @@ public class TestRouterSecurity extends Activity {
 
     public void sendLogInfo(View view) throws IOException {
         // Send to server when available
-        //WriteLogFile(LOG_INFO);
+        WriteLogFile(LOG_INFO);
         //ReadLogFile();
         logInfoText.setText("");
     }
