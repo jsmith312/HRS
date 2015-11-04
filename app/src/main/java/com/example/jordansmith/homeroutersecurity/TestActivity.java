@@ -187,28 +187,30 @@ public class TestActivity extends Activity {
 
                 HttpResponse response2 = httpClient2.execute(post2);
                 HttpEntity entity2 = response2.getEntity();
-                String responseString2 = EntityUtils.toString(entity2, "UTF-8");
-                Log.d(DEBUG, responseString2.toString());
-                JSONObject dataresult = new JSONObject(responseString2);
-                JSONArray arr = dataresult.getJSONArray("test");
-                for (int i = 0; i < arr.length(); i++) {
-                    JSONObject up = arr.getJSONObject(i);
-                    String user = up.getString("user");
-                    String pass = up.getString("pass");
-                    httpHelper.setPassword(pass);
-                    httpHelper.setUsername(user);
-                    int resp = httpHelper.getResponse();
-                    Log.d(DEBUG, "USER:" + httpHelper.getUsername() + " PASS: " + httpHelper.getPassword());
-                    Log.d(DEBUG, "USER:" + user + " PASS: " + pass + " RESPONSE " + resp);
-                    if (resp != 401) {
-                        rep.setDefaultUserName(user);
-                        rep.setDefaultPassword(pass);
-                        rep.setHasDefaultPassword(true);
-                        publishProgress(100);
-                        return rep; // has default pw
+                if (entity2 != null) {
+                    String responseString2 = EntityUtils.toString(entity2, "UTF-8");
+                    Log.d(DEBUG, responseString2.toString());
+                    JSONObject dataresult = new JSONObject(responseString2);
+                    JSONArray arr = dataresult.getJSONArray("test");
+                    for (int i = 0; i < arr.length(); i++) {
+                        JSONObject up = arr.getJSONObject(i);
+                        String user = up.getString("user");
+                        String pass = up.getString("pass");
+                        httpHelper.setPassword(pass);
+                        httpHelper.setUsername(user);
+                        int resp = httpHelper.getResponse();
+                        Log.d(DEBUG, "USER:" + httpHelper.getUsername() + " PASS: " + httpHelper.getPassword());
+                        Log.d(DEBUG, "USER:" + user + " PASS: " + pass + " RESPONSE " + resp);
+                        if (resp != 401) {
+                            rep.setDefaultUserName(user);
+                            rep.setDefaultPassword(pass);
+                            rep.setHasDefaultPassword(true);
+                            publishProgress(100);
+                            return rep; // has default pw
+                        }
+                        float percentage = ((float) i / (float) arr.length()) * 100;
+                        publishProgress(Float.valueOf(percentage).intValue());
                     }
-                    float percentage = ((float) i / (float) arr.length()) * 100;
-                    publishProgress(Float.valueOf(percentage).intValue());
                 }
             } catch (Exception e) {
                 // TODO Auto-generated catch block
