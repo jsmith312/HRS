@@ -149,18 +149,22 @@ public class TestActivity extends Activity {
             Reporter rep = new Reporter(false, "", "", "");
             // TODO Auto-generated method stub
             httpHelper = params[0];
+            int code = -1;
             HttpClient httpClient = new DefaultHttpClient();
             HttpPost post = new HttpPost("http://www.macvendorlookup.com/api/v2/"+httpHelper.getMac());
             try {
-                HttpResponse response = httpClient.execute(post);
-                HttpEntity entity = response.getEntity();
-                String responseString = EntityUtils.toString(entity, "UTF-8");
-                String jsonObj = responseString.substring(1,responseString.length()-1);
-                JSONObject result = new JSONObject(jsonObj);
-                Company =result.getString("company");
-                rep.setCompany(Company);
-                Log.d(DEBUG, responseString.toString());
-                Log.d(DEBUG, Company);
+                HttpResponse httpResponse = httpClient.execute(post);
+                code = httpResponse.getStatusLine().getStatusCode();
+                if (code >= 200 && code <= 399) {
+                    HttpEntity entity = httpResponse.getEntity();
+                    if (entity != null) {
+                        String responseString = EntityUtils.toString(entity, "UTF-8");
+                        String jsonObj = responseString.substring(1, responseString.length() - 1);
+                        JSONObject result = new JSONObject(jsonObj);
+                        Company = result.getString("company");
+                        rep.setCompany(Company);
+                    }
+                }
             } catch (ClientProtocolException e) {
                 // Log exception
                 e.printStackTrace();
